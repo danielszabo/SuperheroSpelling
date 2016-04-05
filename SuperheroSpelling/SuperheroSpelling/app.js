@@ -15,10 +15,11 @@ var Models;
 var Models;
 (function (Models) {
     var Arena = (function () {
-        function Arena(details, player1, player2) {
+        function Arena(details, player1, player2, words) {
             this.details = details;
             this.player1 = player1;
             this.player2 = player2;
+            this.words = words;
         }
         return Arena;
     })();
@@ -33,14 +34,16 @@ var Models;
         }
         Game.prototype.runTest = function () {
             var self = this;
-            return $.when(new Services.ArenaService().fetchArenas(), new Services.CharacterService().fetchCharacters())
-                .done(function ($a, $b) {
+            return $.when(new Services.ArenaService().fetchArenas(), new Services.CharacterService().fetchCharacters(), new Services.WordService().fetchWordsByLevel(1))
+                .done(function ($a, $b, $c) {
                 var arenaDetails = $a[0];
                 var characters = $b[0];
+                var words = $c[0];
                 var arenaDetail = arenaDetails[0];
                 var character1 = characters[0];
-                var character2 = characters[1];
-                var arena = new Models.Arena(arenaDetail, character1, character2);
+                var character2 = characters[5];
+                var wordbank = words;
+                var arena = new Models.Arena(arenaDetail, character1, character2, wordbank);
                 var arenaViewModel = new ViewModels.ArenaViewModel(arena);
                 self.arena = arenaViewModel;
                 ko.applyBindings(arenaViewModel, document.getElementById("arena"));
@@ -49,6 +52,19 @@ var Models;
         return Game;
     })();
     Models.Game = Game;
+})(Models || (Models = {}));
+var Models;
+(function (Models) {
+    var MathProblem = (function () {
+        function MathProblem(level, expression, accepts, usage) {
+            this.level = level;
+            this.expression = expression;
+            this.accepts = accepts;
+            this.usage = usage;
+        }
+        return MathProblem;
+    })();
+    Models.MathProblem = MathProblem;
 })(Models || (Models = {}));
 var Models;
 (function (Models) {
@@ -157,11 +173,45 @@ var Services;
 /// <reference path="../../scripts/typings/jquery/jquery.d.ts" />
 var Services;
 (function (Services) {
+    var MathProblem = (function () {
+        function MathProblem() {
+        }
+        MathProblem.prototype.fetchMathProblemsBylevel = function (level) {
+            return $.getJSON("data/Level" + level + "MathProblems.json");
+        };
+        return MathProblem;
+    })();
+    Services.MathProblem = MathProblem;
+})(Services || (Services = {}));
+/// <reference path="../models/character.ts" />
+/// <reference path="../../scripts/typings/jquery/jquery.d.ts" />
+var Services;
+(function (Services) {
     var WordService = (function () {
         function WordService() {
         }
         WordService.prototype.fetchWordsByLevel = function (level) {
             return $.getJSON("data/Level" + level + "Words.json");
+        };
+        WordService.prototype.getRandomNWordsFromExistingArray = function (words, n) {
+            var min = 0, wordCount = n, randomWords = [];
+            for (var i = 0; i < wordCount; i++) {
+                var max = words.length - 1;
+                var rand = Math.floor(Math.random() * (max - min + 1)) + min;
+                var candidate = words[rand];
+                if (randomWords.indexOf(candidate) !== -1) {
+                    i--;
+                    continue;
+                }
+                randomWords.push(words[rand]);
+            }
+            return randomWords;
+        };
+        WordService.prototype.selectRandomWordFromExistingArray = function (words) {
+            var min = 0;
+            var max = words.length - 1;
+            var rand = Math.floor(Math.random() * (max - min + 1)) + min;
+            return words[rand];
         };
         return WordService;
     })();
@@ -175,12 +225,42 @@ var ViewModels;
             this.player1 = new ViewModels.CharacterViewModel(arena.player1);
             this.player2 = new ViewModels.CharacterViewModel(arena.player2);
             this.activePlayer = ko.observable(this.player1);
+            this.showWordSelectModal = ko.observable(false);
+            this.words = arena.words;
+            this.random4Words = ko.observableArray([]);
         }
         ArenaViewModel.prototype.nextPlayersTurn = function () {
             var nextPlayer = (this.activePlayer() === this.player1)
                 ? this.player2 : this.player1;
             this.activePlayer(nextPlayer);
             return this;
+        };
+        ArenaViewModel.prototype.showWordModalWithFreshWords = function () {
+            var _this = this;
+            this.showWordSelectModal(true);
+            this.random4Words.removeAll();
+            var wordService = new Services.WordService();
+            var randomWords = wordService.getRandomNWordsFromExistingArray(this.words, 4);
+            randomWords.forEach(function (word) {
+                _this.random4Words.push(word);
+            });
+            this.activeWord = wordService.selectRandomWordFromExistingArray(randomWords);
+            console.log("Active Word:", this.activeWord);
+            return this;
+        };
+        ArenaViewModel.prototype.examinePlayerWordGuess = function (word) {
+            console.log(this);
+            console.log(word);
+            console.log(this.activeWord);
+            if (word.word === this.activeWord.word) {
+                console.log("HIT");
+                this.facilitateAttack();
+                this.nextPlayersTurn();
+            }
+            else {
+                console.log("MISS");
+            }
+            console.log("SI");
         };
         ArenaViewModel.prototype.facilitateAttack = function () {
             var attacker = this.activePlayer();

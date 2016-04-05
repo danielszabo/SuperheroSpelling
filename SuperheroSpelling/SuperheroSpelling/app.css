@@ -12,7 +12,8 @@ span {
   position: relative;
   width: 800px;
   margin: 0 auto;
-  min-height: 300px;
+  min-height: 400px;
+  outline: 1px solid #000;
 }
 
 .activePlayer{
@@ -75,9 +76,28 @@ span {
   -ms-filter: “FlipH”;
 }
 
+
+.playerCmds{
+  position: absolute;
+  bottom: 0;
+  outline: 2px solid green;
+  background-color: #CCC;
+}
+  .playerCmds .playerCmd{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border: 1px solid #000;
+    background-color: #666;
+    display: inline-block;
+    cursor: pointer;
+  }.playerCmds .playerCmd:hover{
+     background-color: #999;
+   }
+
 .playerReadout {
   position: absolute;
-  top: 100%;
+  bottom: 100px;
   background-color: #CCC;
 }
 
@@ -92,7 +112,7 @@ span {
 
 .wordSelectModal{
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 50%;
   width: 300px;
   margin-left: -155px;

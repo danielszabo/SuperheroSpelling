@@ -1,0 +1,16 @@
+﻿[ 
+  {"level": 1, "expression": "3 + 2", "accepts": [5], "usage": "three plus two" },
+  {"level": 1, "expression": "2 + 3", "accepts": [5], "usage": "two plus three" },
+  {"level": 1, "expression": "4 + 4", "accepts": [8], "usage": "four plus four" },
+  {"level": 1, "expression": "5 + 4", "accepts": [9], "usage": "five plus four" },
+  {"level": 1, "expression": "5 + 2", "accepts": [7], "usage": "five plus two" },
+  {"level": 1, "expression": "6 + 3", "accepts": [9], "usage": "six plus three" },
+  {"level": 1, "expression": "7 + 2", "accepts": [9], "usage": "seven plus two" },
+  {"level": 1, "expression": "8 + 1", "accepts": [9], "usage": "eight plus one" },
+  {"level": 1, "expression": "3 + 4", "accepts": [7], "usage": "three plus four" },
+  {"level": 1, "expression": "4 + 3", "accepts": [7], "usage": "four plus three" },
+  {"level": 1, "expression": "6 + 2", "accepts": [8], "usage": "six plus two" },
+  {"level": 1, "expression": "2 + 6", "accepts": [8], "usage": "two plus six" },
+  {"level": 1, "expression": "4 + 5", "accepts": [9], "usage": "four plus five" },
+  {"level": 1, "expression": "1 + 8", "accepts": [9], "usage": "one plus eight" }
+]

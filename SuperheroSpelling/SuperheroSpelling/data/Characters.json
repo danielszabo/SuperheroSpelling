@@ -2,7 +2,7 @@
   {
     "name": "BayMax",
     "pictures": {
-      "fullbody": "BayMax.fullbody.png",
+      "fullbody": "-BayMax.fullbody.png",
       "portrait": ""
     },
     "stats": {
@@ -72,7 +72,7 @@
   {
     "name": "Iron Man",
     "pictures": {
-      "fullbody": "IronMan.fullbody.png",
+      "fullbody": "-IronMan.fullbody.png",
       "portrait": ""
     },
     "stats": {

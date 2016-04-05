@@ -20,7 +20,12 @@
   <ItemGroup>
     <Content Include="app.css" />
     <None Include="data\Arenas.json" />
+    <Content Include="data\Level1MathProblems.json" />
+    <None Include="data\Level3Words.json" />
+    <None Include="data\Level4Words.json" />
     <Content Include="index.html" />
+    <Content Include="data\Level1Words.json" />
+    <Content Include="data\Level2Words.json" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
     <Content Include="Scripts\jquery-2.2.2.min.js" />
@@ -35,12 +40,16 @@
     <TypeScriptCompile Include="Core\Models\Arena.ts" />
     <TypeScriptCompile Include="Core\Models\Character.ts" />
     <TypeScriptCompile Include="Core\Models\Game.ts" />
+    <TypeScriptCompile Include="Core\Models\MathProblem.ts" />
+    <TypeScriptCompile Include="Core\Models\Word.ts" />
     <TypeScriptCompile Include="Core\Services\ArenaService.ts" />
     <TypeScriptCompile Include="Core\Services\AttackService.ts" />
     <TypeScriptCompile Include="Core\Services\BuffService.ts" />
     <TypeScriptCompile Include="Core\Services\CastService.ts" />
     <TypeScriptCompile Include="Core\Services\CharacterService.ts" />
     <TypeScriptCompile Include="Core\Services\HealService.ts" />
+    <TypeScriptCompile Include="Core\Services\MathProblemService.ts" />
+    <TypeScriptCompile Include="Core\Services\WordService.ts" />
     <TypeScriptCompile Include="Core\Services\_references.ts" />
     <TypeScriptCompile Include="Core\ViewModels\ArenaViewModel.ts" />
     <TypeScriptCompile Include="Core\ViewModels\CharacterViewModel.ts" />

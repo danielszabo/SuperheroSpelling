@@ -22,7 +22,7 @@
       <div style="text-align:center;">
         <input type="button" value="Fire" data-bind="click: facilitateAttack" />
         <input type="button" value="Next Player" data-bind="click: nextPlayersTurn" />
-      </div>
+        <input type="button" value="Show Modal with Fresh Words" data-bind="click: showWordModalWithFreshWords"></div>
 
 
       <div class="playerStats player1Stats" data-bind="css: {activePlayer : activePlayer() == player1}">
@@ -46,6 +46,12 @@
 
       <div class="playerCharacter player1Character"
            data-bind="style: { backgroundImage: 'url(\'Images/Characters/' + player1.pictures.fullbody + '\')' }"></div>
+
+      <div class="playerCmds player1Cmds">
+        <div class="playerCmd playerCmdAttack"></div>
+        <div class="playerCmd playerCmdChargeBattery"></div>
+        <div class="playerCmd playerCmdHeal"></div>
+      </div>
 
       <div class="playerCharacter player2Character"
            data-bind="style: { backgroundImage: 'url(\'Images/Characters/' + player2.pictures.fullbody + '\')' }"></div>
@@ -72,34 +78,34 @@
       </div>
 
 
-      <div class="wordSelectModal">
-        <ul>
-          <li>Word 1</li>
-          <li>Word 2</li>
-          <li>Word 3</li>
-          <li>Word 4</li>
+
+
+
+      <div class="wordSelectModal" data-bind="visible: showWordSelectModal">
+        <ul data-bind="foreach: random4Words()">
+          <li data-bind="click: $parent.examinePlayerWordGuess"><span data-bind="text:word"></span></li>
         </ul>
       </div>
-    
-
-  </div>
 
 
-
-
-  <script type="text/javascript">
-
-    var Game = new Models.Game();
-    var player1ViewModel = null;
-
-    Game.runTest()
-      .then(function (foo) {
-        console.log("\r\n\r\nHave a nice day.");
-      });
+    </div>
 
 
 
-  </script>
+
+    <script type="text/javascript">
+
+      var Game = new Models.Game();
+      var player1ViewModel = null;
+
+      Game.runTest()
+        .then(function (foo) {
+          console.log("\r\n\r\nHave a nice day.");
+        });
+
+
+
+    </script>
 
   </div>
 </body>
