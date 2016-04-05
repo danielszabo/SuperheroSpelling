@@ -2,19 +2,31 @@
 
   export interface IWord {
     word             : string;
+    accepts          : Array<string>;
     phoneticSpelling : string;
-    exampleSentence  : string;
+    usage            : string;
+    level            : number;
   }
 
   export class Word implements IWord{
     word             : string;
+    accepts          : Array<string>;
     phoneticSpelling : string;
-    exampleSentence  : string;
+    usage            : string;
+    level            : number;
 
-    constructor(word: string, phoneticSpelling: string, exampleSentence: string) {
+    constructor(
+      word            : string, 
+      accepts         : Array<string>, 
+      phoneticSpelling: string, 
+      usage           : string, 
+      level           : number) 
+    {
       this.word             = word;
+      this.accepts          = accepts;
       this.phoneticSpelling = phoneticSpelling;
-      this.exampleSentence  = exampleSentence;
+      this.usage            = usage;
+      this.level            = level;
     }
   }
 } 

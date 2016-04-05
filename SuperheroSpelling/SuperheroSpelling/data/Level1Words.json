@@ -1,0 +1,23 @@
+﻿[ 
+  { "level":  1, "word":"all",     "accepts" : ["all"],              "usage": "The mother loved all her children"},
+  { "level":  1, "word": "are",    "accepts" : ["are"],              "usage": "The children are happy" },
+  { "level":  1, "word": "butter", "accepts" : ["butter"],           "usage": "I would like butter on my toast" },
+  { "level":  1, "word": "by",     "accepts" : ["by", "bye", "buy"], "usage": "He rode his bike by the store" },
+  { "level":  1, "word": "call",   "accepts" : ["call"],             "usage": "Can I call you on the telephone" },
+  { "level":  1, "word": "come",   "accepts" : ["come"],             "usage": "The mother asked the boy to come here" },
+  { "level":  1, "word": "fix",    "accepts" : ["fix"],              "usage": "The child wanted to fix the toy" },
+  { "level":  1, "word": "he",     "accepts" : ["he"],               "usage": "The boy asked if he could play with the toy" },
+  { "level":  1, "word": "here",   "accepts" : ["here", "hear"],     "usage": "Can you come over here please" },
+  { "level":  1, "word": "of",     "accepts" : ["of"],               "usage": "In the nick of time" },
+  { "level":  1, "word": "off",    "accepts" : ["off"],              "usage": "The boy asked his sister to get off him" },
+  { "level":  1, "word": "one",    "accepts" : ["one", "won"],       "usage": "The boy counted one two three!" },
+  { "level":  1, "word": "red",    "accepts" : ["red"],              "usage": "My favorite color is red" },
+  { "level":  1, "word": "she",    "accepts" : ["she"],              "usage": "She asked if she could play with the toy" },
+  { "level":  1, "word": "that",   "accepts" : ["that"],             "usage": "The boy likes that toy very much" },
+  { "level":  1, "word": "the",    "accepts" : ["the"],              "usage": "The boy played with the toy" },
+  { "level":  1, "word": "them",   "accepts" : ["them"],             "usage": "The boy said he wants to play with them" },
+  { "level":  1, "word": "was",    "accepts" : ["was"],              "usage": "The boy was at the store with his mother" },
+  { "level":  1, "word": "where",  "accepts" : ["where"],            "usage": "The boy wanted to know where his mother was going" },
+  { "level":  1, "word": "with",   "accepts" : ["with"],             "usage": "The boy wanted to go with his mother" },
+  { "level":  1, "word": "you",    "accepts" : ["you"],              "usage": "The boy told his mother I love you!" }
+]

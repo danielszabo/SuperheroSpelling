@@ -53,10 +53,12 @@ var Models;
 var Models;
 (function (Models) {
     var Word = (function () {
-        function Word(word, phoneticSpelling, exampleSentence) {
+        function Word(word, accepts, phoneticSpelling, usage, level) {
             this.word = word;
+            this.accepts = accepts;
             this.phoneticSpelling = phoneticSpelling;
-            this.exampleSentence = exampleSentence;
+            this.usage = usage;
+            this.level = level;
         }
         return Word;
     })();
@@ -151,6 +153,20 @@ var Services;
 /// <reference path="castservice.ts" />
 /// <reference path="characterservice.ts" />
 /// <reference path="healservice.ts" />
+/// <reference path="../models/character.ts" />
+/// <reference path="../../scripts/typings/jquery/jquery.d.ts" />
+var Services;
+(function (Services) {
+    var WordService = (function () {
+        function WordService() {
+        }
+        WordService.prototype.fetchWordsByLevel = function (level) {
+            return $.getJSON("data/Level" + level + "Words.json");
+        };
+        return WordService;
+    })();
+    Services.WordService = WordService;
+})(Services || (Services = {}));
 var ViewModels;
 (function (ViewModels) {
     var ArenaViewModel = (function () {
