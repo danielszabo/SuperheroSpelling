@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>TypeScript HTML App</title>
+  <link rel="stylesheet" href="app.css" type="text/css" />
+  <script src="Scripts/jquery-2.2.2.min.js"></script>
+  <script src="Scripts/knockout-3.4.0.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <div id="content">
+
+
+    <div id="arena" class="arena">
+      <div style="text-align:center;">
+        <h2 data-bind="text:details.name"></h2>
+      </div>
+
+      <div style="text-align:center;">
+        <input type="button" value="Fire" data-bind="click: facilitateAttack" />
+        <input type="button" value="Next Player" data-bind="click: nextPlayersTurn" />
+      </div>
+
+
+      <div class="playerStats player1Stats" data-bind="css: {activePlayer : activePlayer() == player1}">
+        <div class="playerName"><span data-bind="text:player1.name"></span></div>
+        <div class="playerHealth">
+          <div data-bind="foreach: player1.healthRepeated">
+            <div class="healthTick"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="playerStats player2Stats" data-bind="css: {activePlayer : activePlayer() == player2}">
+        <div class="playerName"><span data-bind="text:player2.name"></span></div>
+        <div class="playerHealth">
+          <div data-bind="foreach: player2.healthRepeated">
+            <div class="healthTick"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="playerCharacter player1Character"
+           data-bind="style: { backgroundImage: 'url(\'Images/Characters/' + player1.pictures.fullbody + '\')' }"></div>
+
+      <div class="playerCharacter player2Character"
+           data-bind="style: { backgroundImage: 'url(\'Images/Characters/' + player2.pictures.fullbody + '\')' }"></div>
+
+
+      <div class="playerReadout player1Readout">
+        <span data-bind="text:player1.name"></span>
+        <ul>
+          <li>Battery:<span data-bind="text:player1.stats.battery"></span>   </li>
+          <li>Health:<span data-bind="text:player1.stats.health"></span>     </li>
+          <li>Shields:<span data-bind="text:player1.stats.shields"></span>   </li>
+          <li>Strength:<span data-bind="text:player1.stats.strength"></span> </li>
+        </ul>
+      </div>
+
+      <div class="playerReadout player2Readout">
+        <span data-bind="text:player2.name"></span>
+        <ul>
+          <li>Battery:<span data-bind="text:player2.stats.battery"></span>   </li>
+          <li>Health:<span data-bind="text:player2.stats.health"></span>     </li>
+          <li>Shields:<span data-bind="text:player2.stats.shields"></span>   </li>
+          <li>Strength:<span data-bind="text:player2.stats.strength"></span> </li>
+        </ul>
+      </div>
+
+
+      <div class="wordSelectModal">
+        <ul>
+          <li>Word 1</li>
+          <li>Word 2</li>
+          <li>Word 3</li>
+          <li>Word 4</li>
+        </ul>
+      </div>
+    
+
+  </div>
+
+
+
+
+  <script type="text/javascript">
+
+    var Game = new Models.Game();
+    var player1ViewModel = null;
+
+    Game.runTest()
+      .then(function (foo) {
+        console.log("\r\n\r\nHave a nice day.");
+      });
+
+
+
+  </script>
+
+  </div>
+</body>
+
+
+
+</html>

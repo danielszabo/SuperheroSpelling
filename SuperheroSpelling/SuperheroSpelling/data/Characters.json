@@ -1,0 +1,128 @@
+﻿[
+  {
+    "name": "BayMax",
+    "pictures": {
+      "fullbody": "BayMax.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Black Widow",
+    "pictures": {
+      "fullbody": "BlackWidow.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Captain America",
+    "pictures": {
+      "fullbody": "CaptainAmerica.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Hulk",
+    "pictures": {
+      "fullbody": "Hulk.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Hulk Buster",
+    "pictures": {
+      "fullbody": "HulkBuster.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Iron Man",
+    "pictures": {
+      "fullbody": "IronMan.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Storm Shadow",
+    "pictures": {
+      "fullbody": "StormShadow.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Thor",
+    "pictures": {
+      "fullbody": "Thor.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Wolverine",
+    "pictures": {
+      "fullbody": "Wolvering.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 100,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  }
+]
