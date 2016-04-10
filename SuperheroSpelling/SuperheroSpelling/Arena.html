@@ -5,11 +5,13 @@
   <meta charset="utf-8" />
   <title>TypeScript HTML App</title>
   <link rel="stylesheet" href="app.css" type="text/css" />
-  <script src="Scripts/jquery-2.2.2.min.js"></script>
-  <script src="Scripts/knockout-3.4.0.js"></script>
+  <link href="css/Arena.css" rel="stylesheet" />
+  <script src="Scripts/3rdParty/jquery-2.2.2.min.js"></script>
+  <script src="Scripts/3rdParty/knockout-3.4.0.js"></script>
+  <script src="Scripts/common.js"></script>
   <script src="app.js"></script>
 </head>
-<body>
+<body class="noSelect">
 
   <div id="content">
 
@@ -21,8 +23,11 @@
 
       <div style="text-align:center;">
         <input type="button" value="Fire" data-bind="click: facilitateAttack" />
-        <input type="button" value="Next Player" data-bind="click: nextPlayersTurn" />
-        <input type="button" value="Show Modal with Fresh Words" data-bind="click: showWordModalWithFreshWords"></div>
+        <input type="button" value="Next Player" data-bind="click: nextPlayersTurn" /><br />
+        <input type="button" value="Show Modal with Fresh Words" data-bind="click: showWordModalWithFreshWords"><br />
+        <input type="button" value="Show Math Modal with Fresh Math Problem" data-bind="click: showMathProblemModalWithFreshMathProblem">
+      </div>
+
 
 
       <div class="playerStats player1Stats" data-bind="css: {activePlayer : activePlayer() == player1}">
@@ -30,6 +35,11 @@
         <div class="playerHealth">
           <div data-bind="foreach: player1.healthRepeated">
             <div class="healthTick"></div>
+          </div>
+        </div>
+        <div class="playerBattery">
+          <div data-bind="foreach: player2.batteryRepeated">
+            <div class="batteryTick"></div>
           </div>
         </div>
       </div>
@@ -41,6 +51,11 @@
             <div class="healthTick"></div>
           </div>
         </div>
+        <div class="playerBattery">
+          <div data-bind="foreach: player2.batteryRepeated">
+            <div class="batteryTick"></div>
+          </div>
+        </div>
       </div>
 
 
@@ -48,14 +63,19 @@
            data-bind="style: { backgroundImage: 'url(\'Images/Characters/' + player1.pictures.fullbody + '\')' }"></div>
 
       <div class="playerCmds player1Cmds">
-        <div class="playerCmd playerCmdAttack"></div>
-        <div class="playerCmd playerCmdChargeBattery"></div>
-        <div class="playerCmd playerCmdHeal"></div>
+        <div class="playerCmd playerCmdAttack" data-bind="click: showWordModalWithFreshWords">Attack</div>
+        <div class="playerCmd playerCmdChargeBattery" data-bind="click: showMathProblemModalWithFreshMathProblem">Battery</div>
+        <div class="playerCmd playerCmdHeal">Heal</div>
       </div>
 
       <div class="playerCharacter player2Character"
            data-bind="style: { backgroundImage: 'url(\'Images/Characters/' + player2.pictures.fullbody + '\')' }"></div>
 
+      <div class="playerCmds player2Cmds">
+        <div class="playerCmd playerCmdAttack" data-bind="click: showWordModalWithFreshWords">Attack</div>
+        <div class="playerCmd playerCmdChargeBattery" data-bind="click: showMathProblemModalWithFreshMathProblem">Battery</div>
+        <div class="playerCmd playerCmdHeal">Heal</div>
+      </div>
 
       <div class="playerReadout player1Readout">
         <span data-bind="text:player1.name"></span>
@@ -81,9 +101,16 @@
 
 
 
-      <div class="wordSelectModal" data-bind="visible: showWordSelectModal">
-        <ul data-bind="foreach: random4Words()">
+      <div class="selectModal wordSelectModal" data-bind="visible: showWordSelectModal">
+        <ul class="modalAnswerList" data-bind="foreach: random4Words()">
           <li data-bind="click: $parent.examinePlayerWordGuess"><span data-bind="text:word"></span></li>
+        </ul>
+      </div>
+
+      <div class="selectModal mathProblemModal" data-bind="visible: showMathProblemModal">
+        <div class="activeMathProblemExpression"><span data-bind="text: activeMathProblem().expression"></span></div>
+        <ul class="modalAnswerList" data-bind="foreach: random4Numbers()">
+          <li><span data-bind="text:$data"></span></li>
         </ul>
       </div>
 
@@ -98,7 +125,7 @@
       var Game = new Models.Game();
       var player1ViewModel = null;
 
-      Game.runTest()
+      Game.runArenaTest()
         .then(function (foo) {
           console.log("\r\n\r\nHave a nice day.");
         });

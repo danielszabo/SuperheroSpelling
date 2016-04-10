@@ -15,11 +15,12 @@ var Models;
 var Models;
 (function (Models) {
     var Arena = (function () {
-        function Arena(details, player1, player2, words) {
+        function Arena(details, player1, player2, words, mathProblems) {
             this.details = details;
             this.player1 = player1;
             this.player2 = player2;
             this.words = words;
+            this.mathProblems = mathProblems;
         }
         return Arena;
     })();
@@ -32,18 +33,34 @@ var Models;
             window["game"] = this;
             window["Game"] = this;
         }
-        Game.prototype.runTest = function () {
+        Game.prototype.runHeroSelectTest = function () {
             var self = this;
-            return $.when(new Services.ArenaService().fetchArenas(), new Services.CharacterService().fetchCharacters(), new Services.WordService().fetchWordsByLevel(1))
-                .done(function ($a, $b, $c) {
+            return new Services.CharacterService().fetchCharacters()
+                .then(function (characters) {
+                var heroSelectScrn = new ViewModels.HeroSelectViewModel(characters);
+                self.heroSelect = heroSelectScrn;
+                ko.applyBindings(self.heroSelect, document.getElementById("HeroSelect"));
+            });
+        };
+        Game.prototype.runArenaTest = function () {
+            var self = this;
+            return $.when(new Services.ArenaService().fetchArenas(), new Services.CharacterService().fetchCharacters(), new Services.WordService().fetchWordsByLevel(1), new Services.MathProblemService().fetchMathProblemsBylevel(1))
+                .done(function ($a, $b, $c, $d) {
                 var arenaDetails = $a[0];
                 var characters = $b[0];
                 var words = $c[0];
+                var mathProblems = $d[0];
                 var arenaDetail = arenaDetails[0];
                 var character1 = characters[0];
                 var character2 = characters[5];
                 var wordbank = words;
-                var arena = new Models.Arena(arenaDetail, character1, character2, wordbank);
+                var mathProblems = mathProblems;
+                var userHasAlreadySelectedCharacter = localStorage.getItem("SelectedCharacter");
+                if (userHasAlreadySelectedCharacter) {
+                    console.warn("USER HAS ALREADY CHOSEN CHARACTER");
+                    character1 = JSON.parse(localStorage.getItem("SelectedCharacter"));
+                }
+                var arena = new Models.Arena(arenaDetail, character1, character2, wordbank, mathProblems);
                 var arenaViewModel = new ViewModels.ArenaViewModel(arena);
                 self.arena = arenaViewModel;
                 ko.applyBindings(arenaViewModel, document.getElementById("arena"));
@@ -65,6 +82,15 @@ var Models;
         return MathProblem;
     })();
     Models.MathProblem = MathProblem;
+})(Models || (Models = {}));
+var Models;
+(function (Models) {
+    var SaveFile = (function () {
+        function SaveFile() {
+        }
+        return SaveFile;
+    })();
+    Models.SaveFile = SaveFile;
 })(Models || (Models = {}));
 var Models;
 (function (Models) {
@@ -173,15 +199,55 @@ var Services;
 /// <reference path="../../scripts/typings/jquery/jquery.d.ts" />
 var Services;
 (function (Services) {
-    var MathProblem = (function () {
-        function MathProblem() {
+    var MathProblemService = (function () {
+        function MathProblemService() {
         }
-        MathProblem.prototype.fetchMathProblemsBylevel = function (level) {
+        MathProblemService.prototype.fetchMathProblemsBylevel = function (level) {
             return $.getJSON("data/Level" + level + "MathProblems.json");
         };
-        return MathProblem;
+        MathProblemService.prototype.getRandomMathProblemFromExistingArray = function (mathproblems) {
+            var min = 0;
+            var max = mathproblems.length - 1;
+            var rand = Math.floor(Math.random() * (max - min + 1)) + min;
+            return mathproblems[rand];
+        };
+        MathProblemService.prototype.shuffleArrayOfNumbers = function (numbers) {
+            var j, x, i;
+            for (i = numbers.length; i; i -= 1) {
+                j = Math.floor(Math.random() * i);
+                x = numbers[i - 1];
+                numbers[i - 1] = numbers[j];
+                numbers[j] = x;
+            }
+        };
+        MathProblemService.prototype.getRandomIntInRange = function (min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+        MathProblemService.prototype.getNextNNumbersFromN = function (nextCount, fromN) {
+            var nextNumbers = [];
+            var min = fromN + 1;
+            var max = min + nextCount;
+            for (var i = min; i < max; i++) {
+                nextNumbers.push(i);
+            }
+            return nextNumbers;
+        };
+        MathProblemService.prototype.getPreviousNNumbersFromN = function (previousCount, fromN) {
+            var previousNumbers = [];
+            for (var i = 0; i < previousCount; i++) {
+                previousNumbers.push((fromN - 1) - i);
+            }
+            return previousNumbers;
+        };
+        MathProblemService.prototype.getPreviousNAndNextNNumbersFromN = function (lastCount, nextCount, fromN) {
+            var results = [];
+            results = results.concat(this.getPreviousNNumbersFromN(lastCount, fromN));
+            results = results.concat(this.getNextNNumbersFromN(nextCount, fromN));
+            return results;
+        };
+        return MathProblemService;
     })();
-    Services.MathProblem = MathProblem;
+    Services.MathProblemService = MathProblemService;
 })(Services || (Services = {}));
 /// <reference path="../models/character.ts" />
 /// <reference path="../../scripts/typings/jquery/jquery.d.ts" />
@@ -221,13 +287,33 @@ var ViewModels;
 (function (ViewModels) {
     var ArenaViewModel = (function () {
         function ArenaViewModel(arena) {
+            var _this = this;
+            this.examinePlayerWordGuess = function (word) {
+                console.log(_this);
+                console.log(word);
+                console.log(_this.activeWord);
+                if (word.word === _this.activeWord.word) {
+                    console.log("HIT");
+                    _this.facilitateAttack();
+                    _this.nextPlayersTurn();
+                    _this.hideWordModal();
+                }
+                else {
+                    console.log("MISS");
+                }
+                console.log("SI");
+            };
             this.details = arena.details;
             this.player1 = new ViewModels.CharacterViewModel(arena.player1);
             this.player2 = new ViewModels.CharacterViewModel(arena.player2);
             this.activePlayer = ko.observable(this.player1);
             this.showWordSelectModal = ko.observable(false);
+            this.showMathProblemModal = ko.observable(false);
             this.words = arena.words;
+            this.mathProblems = arena.mathProblems;
             this.random4Words = ko.observableArray([]);
+            this.activeMathProblem = ko.observable(new Models.MathProblem(1, "0+0", 0, ""));
+            this.random4Numbers = ko.observableArray([]);
         }
         ArenaViewModel.prototype.nextPlayersTurn = function () {
             var nextPlayer = (this.activePlayer() === this.player1)
@@ -237,6 +323,7 @@ var ViewModels;
         };
         ArenaViewModel.prototype.showWordModalWithFreshWords = function () {
             var _this = this;
+            this.hideAllModals();
             this.showWordSelectModal(true);
             this.random4Words.removeAll();
             var wordService = new Services.WordService();
@@ -248,19 +335,54 @@ var ViewModels;
             console.log("Active Word:", this.activeWord);
             return this;
         };
-        ArenaViewModel.prototype.examinePlayerWordGuess = function (word) {
-            console.log(this);
-            console.log(word);
-            console.log(this.activeWord);
-            if (word.word === this.activeWord.word) {
-                console.log("HIT");
-                this.facilitateAttack();
-                this.nextPlayersTurn();
+        ArenaViewModel.prototype.showMathProblemModalWithFreshMathProblem = function () {
+            this.hideAllModals();
+            this.showMathProblemModal(true);
+            this.random4Numbers.removeAll();
+            var mathService = new Services.MathProblemService();
+            var candidateRandomAnswers = [];
+            var candidateMathProblem = mathService.getRandomMathProblemFromExistingArray(this.mathProblems);
+            var currentMathProblem = this.activeMathProblem();
+            if (candidateMathProblem === currentMathProblem) {
+                while (candidateMathProblem !== currentMathProblem) {
+                    candidateMathProblem = mathService.getRandomMathProblemFromExistingArray(this.mathProblems);
+                }
             }
-            else {
-                console.log("MISS");
+            this.activeMathProblem(candidateMathProblem);
+            console.log("Active Math Problem: ", this.activeMathProblem());
+            candidateRandomAnswers.push(this.activeMathProblem().accepts);
+            var numberOfAnswerGeneratorAlgos = 4;
+            var chosenAlgoIndex = mathService.getRandomIntInRange(1, numberOfAnswerGeneratorAlgos);
+            if (1 === chosenAlgoIndex) {
+                while (candidateRandomAnswers.length < 5) {
+                    var candidateRandomAnswer = mathService.getRandomIntInRange(this.activeMathProblem().accepts - 4, this.activeMathProblem().accepts + 4);
+                    if (candidateRandomAnswers.indexOf(candidateRandomAnswer) === -1) {
+                        candidateRandomAnswers.push(candidateRandomAnswer);
+                    }
+                }
             }
-            console.log("SI");
+            else if (2 === chosenAlgoIndex) {
+                var candidatePrevNumbers = mathService.getPreviousNNumbersFromN(4, candidateMathProblem.accepts);
+                candidateRandomAnswers = candidateRandomAnswers.concat(candidatePrevNumbers);
+            }
+            else if (3 === chosenAlgoIndex) {
+                var candidateNextNumbers = mathService.getNextNNumbersFromN(4, candidateMathProblem.accepts);
+                candidateRandomAnswers = candidateRandomAnswers.concat(candidateNextNumbers);
+            }
+            else if (4 === chosenAlgoIndex) {
+                var candidatePrevAndNextNumbers = mathService.getPreviousNAndNextNNumbersFromN(2, 2, candidateMathProblem.accepts);
+                candidateRandomAnswers = candidateRandomAnswers.concat(candidatePrevAndNextNumbers);
+            }
+            mathService.shuffleArrayOfNumbers(candidateRandomAnswers);
+            this.random4Numbers(candidateRandomAnswers);
+            return this;
+        };
+        ArenaViewModel.prototype.hideWordModal = function () {
+            this.showWordSelectModal(false);
+        };
+        ArenaViewModel.prototype.hideAllModals = function () {
+            this.showWordSelectModal(false);
+            this.showMathProblemModal(false);
         };
         ArenaViewModel.prototype.facilitateAttack = function () {
             var attacker = this.activePlayer();
@@ -315,10 +437,48 @@ var ViewModels;
                 var health = _this.stats.health();
                 return new Array((health > 0) ? health : 0);
             });
+            this.batteryRepeated = ko.computed(function () {
+                var battery = _this.stats.battery();
+                return new Array((battery > 0) ? battery : 0);
+            });
             console.log(this.pictures.fullbody);
         }
         return CharacterViewModel;
     })();
     ViewModels.CharacterViewModel = CharacterViewModel;
+})(ViewModels || (ViewModels = {}));
+var ViewModels;
+(function (ViewModels) {
+    var HeroSelectViewModel = (function () {
+        function HeroSelectViewModel(characters) {
+            var _this = this;
+            this.previewCharacter = function (character) {
+                _this.player1PreviewCharacter(character);
+                return _this;
+            };
+            this.selectCharacter = function (character) {
+                _this.player1SelectedCharacter(character);
+                return _this;
+            };
+            this.cancelSelectedCharacter = function () {
+                _this.player1SelectedCharacter(null);
+                return _this;
+            };
+            this.acceptSelectedCharacter = function () {
+                console.log("User has confirmed ", _this.player1SelectedCharacter());
+                localStorage["SelectedCharacter"] = JSON.stringify(_this.player1SelectedCharacter());
+                window.location.href = "arena.html";
+                return _this;
+            };
+            var self = this;
+            this.characters = ko.observableArray(characters);
+            this.player1SelectedCharacter = ko.observable(null);
+            this.player2SelectedCharacter = ko.observable(null);
+            this.player1PreviewCharacter = ko.observable(characters[0]);
+            this.player2PreviewCharacter = ko.observable(characters[1]);
+        }
+        return HeroSelectViewModel;
+    })();
+    ViewModels.HeroSelectViewModel = HeroSelectViewModel;
 })(ViewModels || (ViewModels = {}));
 //# sourceMappingURL=app.js.map

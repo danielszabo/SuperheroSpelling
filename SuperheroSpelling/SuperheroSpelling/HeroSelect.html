@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="app.css" type="text/css" />
+  <link href="css/HeroSelect.css" rel="stylesheet" />
+  <script src="Scripts/3rdParty/jquery-2.2.2.min.js"></script>
+  <script src="Scripts/3rdParty/knockout-3.4.0.js"></script>
+  <script src="Scripts/common.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+
+
+  <div id="HeroSelect" class="HeroSelectScreen">
+
+    <div>Select Your Player</div>
+
+
+
+    <h3>Select Your Hero</h3>
+
+    <!--
+    These are the hero tiles that the player chooses from
+    -->
+    <div class="characterSelect">
+
+      <div style="text-align: center">
+        <span class="ChooseYourHeroText outlineText">Choose Your Hero</span>
+      </div>
+
+      <div data-bind="foreach: characters">
+        <div class="portrait"
+             data-bind="style : {backgroundImage: 'url(images/Characters/'+ pictures.fullbody +')'},
+            event:{mouseover: $parent.previewCharacter},
+            click : $parent.selectCharacter">
+        </div>
+      </div>
+
+    </div>
+
+    <!--
+      These are the background tiles that contain the images
+      of the characters that are being previewed/selected
+    -->
+    <div class="playerSelectedCharacters">
+      <div id="SelectedPlayer1" class="playerSelectedCharacter player1SelectedCharacter">
+        <div class="playerSelectedCharacter_Portrait" data-bind="style : {backgroundImage: 'url(images/Characters/'+ player1PreviewCharacter().pictures.fullbody +')'}"></div>
+        <div class="playerSelectedCharacter_Name retroText" data-bind="text:player1PreviewCharacter().name"></div>
+      </div>
+      <div id="SelectedPlayer2" class="playerSelectedCharacter player2SelectedCharacter">
+        <div class="playerSelectedCharacter_Portrait flipX" data-bind="style : {backgroundImage: 'url(images/Characters/'+ player2PreviewCharacter().pictures.fullbody +')'}"></div>
+        <div class="playerSelectedCharacter_Name retroText" data-bind="text:player2PreviewCharacter().name"></div>
+      </div>
+    </div>
+
+
+
+    <div class="confirmCharacterSelectionModal" data-bind="css: { active: player1SelectedCharacter() != null }">
+      <div class="confirmCharacterSelectionModal_Content">
+        Are you sure?
+        <div data-bind="click:acceptSelectedCharacter">Yes</div>
+        <div data-bind="click:cancelSelectedCharacter">No</div>
+        <div>
+          <div id="SelectedPlayer1" class="playerSelectedCharacter player1SelectedCharacter">
+            <div class="playerSelectedCharacter_Portrait" data-bind="style : {backgroundImage: 'url(images/Characters/'+ player1PreviewCharacter().pictures.fullbody +')'}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <script>
+    var game = new Models.Game();
+    game.runHeroSelectTest()
+     .then(function (foo) {
+       console.log("\r\n\r\nHave a nice day.");
+     });
+  </script>
+
+</body>
+</html>

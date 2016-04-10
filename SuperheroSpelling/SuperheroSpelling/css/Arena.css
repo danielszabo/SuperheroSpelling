@@ -1,0 +1,154 @@
+﻿
+.arena {
+  position: relative;
+  width: 800px;
+  margin: 0 auto;
+  min-height: 400px;
+  outline: 1px solid #000;
+}
+
+.activePlayer{
+  background-color: gold;
+}
+
+.playerStats{
+  width: 225px;
+  position: absolute;
+  top: 35px;
+}
+.playerStats.player1Stats {
+  text-align:left;
+  left: 0;
+}
+.playerStats.player2Stats {
+  text-align: right;
+  right: 0;
+}
+.playerStats .playerName{
+  outline: 1px solid green;
+  font-style: italic;
+}
+  .playerStats .playerHealth {
+    outline: 1px solid red;
+    height : 22px;
+  }
+    .playerStats .playerHealth .healthTick{
+      display: inline-block;
+      width: 5px;
+      height: 20px;
+      margin: 0;
+      padding: 0;
+      background-color: green;
+      outline: 1px solid #FFF;
+      box-shadow: 2px 2px 2px #CCC;
+    }
+  .playerStats .playerBattery{
+    outline: 1px solid red;
+    height : 12px;
+  }
+    .playerStats .playerBattery .batteryTick{
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0;
+      padding: 0;
+      background-color: blue;
+      outline: 1px solid #FFF;
+      box-shadow: 2px 2px 2px #CCC;
+    }
+
+
+.playerCharacter{
+  position  : absolute;
+  top       : 90px;
+  width     : 275px;
+  height    : 280px;
+  outline   : 2px solid #333;
+  box-shadow: 3px 3px 3px #CCC;
+  background-size  : cover;
+  background-repeat:no-repeat;
+  }
+.playerCharacter.player1Character{
+  left: 0;
+}
+.playerCharacter.player2Character{
+  right: 0;
+  
+}
+
+
+.playerCmds{
+  position: absolute;
+  bottom: 0;
+  outline: 2px solid green;
+  background-color: #CCC;
+}
+  .playerCmds .playerCmd{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border: 1px solid #000;
+    background-color: #666;
+    display: inline-block;
+    cursor: pointer;
+  }.playerCmds .playerCmd:hover{
+     background-color: #999;
+   }
+
+  .playerCmds.player2Cmds {
+    right: 0;
+  }
+
+.playerReadout {
+  position: absolute;
+  bottom: 100px;
+  background-color: #CCC;
+}
+
+  .playerReadout.player1Readout {
+    left: 0;
+  }
+
+  .playerReadout.player2Readout {
+    right: 0;
+  }
+
+
+.wordSelectModal{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 300px;
+  margin-left: -155px;
+  border: 1px solid #CCC;
+  box-shadow: 0px 0px 3px 3px #333;
+  background: #FFF;
+}
+
+.mathProblemModal{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 300px;
+  margin-left: -155px;
+  border: 1px solid #CCC;
+  box-shadow: 0px 0px 3px 3px #333;
+  background: #FFF;
+}
+.mathProblemModal .activeMathProblemExpression{
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.selectModal ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  font-size: 1.5em;
+}
+  .selectModal ul li{
+    padding: 10px;
+  }.selectModal ul li:hover{
+      background-color: #aebcff;
+      cursor: pointer;
+    }

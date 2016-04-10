@@ -1,0 +1,130 @@
+﻿
+.HeroSelectScreen {
+  
+}
+
+.ChooseYourHeroText {
+  font-size: 2em;
+  font-weight: bold;
+  display: inline-block;
+  background-color: #005CFF;
+  border: 3px solid #FFF;
+  outline: 1px solid #000;
+  padding: 0 5px;
+}
+
+/* The full-size portrait of the character
+  when being previewed or selected
+*/
+.HeroSelectScreen .playerSelectedCharacters{
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #CCC;
+  background-image : url("../Images/Arenas/China.jpg");
+  background-size: contain;
+}
+
+  .playerSelectedCharacter {
+    height: 100%;
+    width: 50%;
+    outline: 1px solid #000;
+  }
+  .playerSelectedCharacter.player1SelectedCharacter{
+    float:left;
+  }
+  .playerSelectedCharacter.player2SelectedCharacter{
+    float:right;
+    text-align: right;
+  }
+.playerSelectedCharacter_Portrait {
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.playerSelectedCharacter_Name {
+  top: 40%;
+  position: absolute;
+  background-color: #FFF;
+  outline: 1px solid #333;
+  box-shadow: 3px 3px 3px #999;
+}
+.player2SelectedCharacter .playerSelectedCharacter_Name{
+  right: 0;
+}
+
+
+/**
+  The "Select Character" widget
+*/
+.characterSelect {
+  z-index: 2;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -232px;
+  width: 465px;
+  outline: 0 solid #000;
+}
+
+ .characterSelect .portrait{
+    display: inline-block;
+    vertical-align: top;
+    width: 100px;
+    height: 100px;
+    border-radius: 55px;
+    border: 5px solid #FFF;
+    outline: 0 solid #000;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #CCC;
+    cursor: pointer;
+  }
+  .characterSelect .portrait:hover{
+    background-color: #FFF;
+  }
+  .characterSelect .portrait.selected {
+    background-color: #FFF;
+  }
+
+
+.confirmCharacterSelectionModal{
+  z-index : 3;
+  position: fixed;
+  top     : 0;
+  left    : 0;
+  height  : 100%;
+  width   : 100%;
+}
+
+.confirmCharacterSelectionModal {
+  display: none;
+}
+.confirmCharacterSelectionModal.active{
+  display: block;
+}
+
+.confirmCharacterSelectionModal_Content {
+  position        : absolute;
+  top             : 50%;
+  left            : 50%;
+  margin-left     : -155px;
+  margin-top      : -150px;
+  height          : 300px;
+  width           : 300px;
+  padding         : 5px;
+  background-color: #FFF;
+  border          : 1px solid #000;
+  box-shadow      : 3px 3px 3px #666;
+  z-index         : 4;
+}
+.confirmCharacterSelectionModal_Content .playerSelectedCharacter_Portrait{
+  height: 150px;
+  width: 150px;
+}

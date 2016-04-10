@@ -2,11 +2,11 @@
   {
     "name": "BayMax",
     "pictures": {
-      "fullbody": "-BayMax.fullbody.png",
+      "fullbody": "BayMax.fullbody.png",
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -20,7 +20,7 @@
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -34,7 +34,7 @@
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -48,7 +48,7 @@
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -62,7 +62,7 @@
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -72,11 +72,11 @@
   {
     "name": "Iron Man",
     "pictures": {
-      "fullbody": "-IronMan.fullbody.png",
+      "fullbody": "IronMan.fullbody.png",
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -90,7 +90,7 @@
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -104,7 +104,7 @@
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100
@@ -114,11 +114,81 @@
   {
     "name": "Wolverine",
     "pictures": {
-      "fullbody": "Wolvering.fullbody.png",
+      "fullbody": "Wolverine.fullbody.png",
       "portrait": ""
     },
     "stats": {
-      "battery": 100,
+      "battery": 4,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Impossible",
+    "pictures": {
+      "fullbody": "Impossible.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 4,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Hero Man",
+    "pictures": {
+      "fullbody": "HeroMan.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 4,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Cat Man",
+    "pictures": {
+      "fullbody": "CatMan.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 4,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+  {
+    "name": "Bat Man",
+    "pictures": {
+      "fullbody": "BatMan.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 4,
+      "health": 20,
+      "shields": 100,
+      "strength": 100
+    },
+    "weapons": [ ]
+  },
+   {
+    "name": "Spiderman",
+    "pictures": {
+      "fullbody": "Spiderman.fullbody.png",
+      "portrait": ""
+    },
+    "stats": {
+      "battery": 4,
       "health": 20,
       "shields": 100,
       "strength": 100

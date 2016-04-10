@@ -17,6 +17,7 @@
     pictures       : ICharacterPicturesViewModel;
     stats          : ICharacterStatsViewModel;
     healthRepeated : any;
+    batteryRepeated: any;
     
     constructor(character : Models.ICharacter) {
       var self   = this;
@@ -35,7 +36,12 @@
       this.healthRepeated = ko.computed(() => {
         var health = this.stats.health();
         return new Array((health > 0) ? health : 0);
-      });  
+      });
+
+      this.batteryRepeated = ko.computed(() => {
+        var battery = this.stats.battery();
+        return new Array((battery > 0) ? battery : 0);
+      });
 
       console.log(this.pictures.fullbody);
     }

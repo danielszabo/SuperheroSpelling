@@ -3,20 +3,20 @@
   export interface IMathProblem {
     level       : number;
     expression  : string;
-    accepts     : Array<number>;
+    accepts     : number;
     usage       : string;
   }
 
   export class MathProblem implements IMathProblem {
     level       : number;
     expression  : string;
-    accepts     : Array<number>;
+    accepts     : number;
     usage       : string;
 
     constructor(
       level     : number,
       expression: string,
-      accepts   : Array<number>,
+      accepts   : number,
       usage     : string) 
     {
       this.level      = level;

@@ -20,27 +20,32 @@
   <ItemGroup>
     <Content Include="app.css" />
     <None Include="data\Arenas.json" />
+    <Content Include="css\Arena.css" />
+    <Content Include="css\HeroSelect.css" />
     <Content Include="data\Level1MathProblems.json" />
     <None Include="data\Level3Words.json" />
     <None Include="data\Level4Words.json" />
-    <Content Include="index.html" />
+    <Content Include="HeroSelect.html" />
+    <Content Include="Arena.html" />
     <Content Include="data\Level1Words.json" />
     <Content Include="data\Level2Words.json" />
-    <None Include="Scripts\jquery-2.2.2.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.2.js" />
-    <Content Include="Scripts\jquery-2.2.2.min.js" />
-    <Content Include="Scripts\knockout-3.4.0.debug.js" />
-    <Content Include="Scripts\knockout-3.4.0.js" />
+    <None Include="Scripts\3rdParty\jquery-2.2.2.intellisense.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\3rdParty\jquery-2.2.2.js" />
+    <Content Include="Scripts\3rdParty\jquery-2.2.2.min.js" />
+    <Content Include="Scripts\3rdParty\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\3rdParty\knockout-3.4.0.js" />
     <Content Include="web.config" />
     <Content Include="data\Characters.json" />
     <Content Include="packages.config" />
-    <Content Include="Scripts\jquery-2.2.2.min.map" />
+    <Content Include="Scripts\3rdParty\jquery-2.2.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Core\Models\Arena.ts" />
     <TypeScriptCompile Include="Core\Models\Character.ts" />
     <TypeScriptCompile Include="Core\Models\Game.ts" />
     <TypeScriptCompile Include="Core\Models\MathProblem.ts" />
+    <TypeScriptCompile Include="Core\Models\SaveFile.ts" />
     <TypeScriptCompile Include="Core\Models\Word.ts" />
     <TypeScriptCompile Include="Core\Services\ArenaService.ts" />
     <TypeScriptCompile Include="Core\Services\AttackService.ts" />
@@ -53,6 +58,7 @@
     <TypeScriptCompile Include="Core\Services\_references.ts" />
     <TypeScriptCompile Include="Core\ViewModels\ArenaViewModel.ts" />
     <TypeScriptCompile Include="Core\ViewModels\CharacterViewModel.ts" />
+    <TypeScriptCompile Include="Core\ViewModels\HeroSelectViewModel.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\tests\jasmine.extensions.d.ts" />

@@ -1,73 +1,19 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
-    
 }
 
 span {
     font-style: italic;
 }
 
-
-.arena {
-  position: relative;
-  width: 800px;
-  margin: 0 auto;
-  min-height: 400px;
-  outline: 1px solid #000;
+.noSelect {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.activePlayer{
-  background-color: gold;
-}
-
-.playerStats{
-  width: 225px;
-  position: absolute;
-  top: 35px;
-}
-.playerStats.player1Stats {
-  text-align:left;
-  left: 0;
-}
-.playerStats.player2Stats {
-  text-align: right;
-  right: 0;
-}
-.playerStats .playerName{
-  outline: 1px solid green;
-  font-style: italic;
-}
-  .playerStats .playerHealth {
-    outline: 1px solid red;
-    height : 22px;
-  }
-    .playerStats .playerHealth .healthTick{
-      display: inline-block;
-      width: 5px;
-      height: 20px;
-      margin: 0;
-      padding: 0;
-      background-color: green;
-      outline: 1px solid #FFF;
-      box-shadow: 2px 2px 2px #CCC;
-    }
-
-
-.playerCharacter{
-  position  : absolute;
-  top       : 90px;
-  width     : 275px;
-  height    : 280px;
-  outline   : 2px solid #333;
-  box-shadow: 3px 3px 3px #CCC;
-  background-size  : cover;
-  background-repeat:no-repeat;
-  }
-.playerCharacter.player1Character{
-  left: 0;
-}
-.playerCharacter.player2Character{
-  right: 0;
+.flipX {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
@@ -76,59 +22,34 @@ span {
   -ms-filter: “FlipH”;
 }
 
-
-.playerCmds{
-  position: absolute;
-  bottom: 0;
-  outline: 2px solid green;
-  background-color: #CCC;
-}
-  .playerCmds .playerCmd{
-    height: 50px;
-    width: 50px;
-    border-radius: 25px;
-    border: 1px solid #000;
-    background-color: #666;
-    display: inline-block;
-    cursor: pointer;
-  }.playerCmds .playerCmd:hover{
-     background-color: #999;
-   }
-
-.playerReadout {
-  position: absolute;
-  bottom: 100px;
-  background-color: #CCC;
+.clearfix:after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
 }
 
-  .playerReadout.player1Readout {
-    left: 0;
-  }
-
-  .playerReadout.player2Readout {
-    right: 0;
-  }
-
-
-.wordSelectModal{
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  width: 300px;
-  margin-left: -155px;
-  border: 1px solid #CCC;
-  box-shadow: 0px 0px 3px 3px #333;
-  background: #FFF;
+.retroText {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  margin: 0 auto;
+  border: none;
+  font: normal 42px/normal "Anton", Helvetica, sans-serif;
+  color: rgb(112, 112, 112);
+  /*text-align: center;*/
+  text-transform: uppercase;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  letter-spacing: 10px;
+  text-shadow: 4px 4px 0 rgb(238,238,238) , 6px 6px 0 rgb(112,112,112) ;
 }
-  .wordSelectModal ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0px;
-    font-size: 1.5em;
-  }
-    .wordSelectModal ul li{
-      padding: 10px;
-    }.wordSelectModal ul li:hover{
-       background-color: #aebcff;
-       cursor: pointer;
-     }
+
+.outlineText {
+  display: inline-block;
+  color: #FFF;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+
+
